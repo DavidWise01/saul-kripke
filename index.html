@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saul Kripke — possible worlds</title>
+<meta name="description" content="LOGIKĒ XXVIII — Saul Kripke (1940–2022). As a teenager he gave modal logic its meaning: a model is a set of possible WORLDS with an ACCESSIBILITY relation, where 'necessarily P' is true at a world when P holds in every world it can see, and 'possibly P' when P holds in some. Different shapes of accessibility (reflexive, symmetric, transitive) validate different modal systems (T, S4, S5) — the semantic backbone behind Ruth Barcan Marcus's quantified modal logic, and the logics of knowledge, time, and provability. Live: a possible-worlds model where you set the accessibility relation and evaluate □ and ◇, and watch which modal axioms hold. David Lee Wise, two-layer honest.">
+<style>
+  :root{--bg:#0c0f17;--panel:#121622;--panel2:#19202f;--edge:#2a3346;--ink:#ede6d6;--dim:#b3ad9a;--faint:#7c7660;
+    --ochre:#d9b66a;--ochre2:#f0d79a;--proof:#5ad1ff;--proof2:#a7e6ff;--one:#7fe0a0;--zero:#fb7185;--amber:#fbbf24;--ember:#fb923c;
+    --mono:'SFMono-Regular',ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;--serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.58;background-image:radial-gradient(1100px 560px at 75% -10%,#1c2436 0%,transparent 55%),radial-gradient(900px 500px at 0% 100%,#14110a 0%,transparent 55%);}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 26px 90px}
+  header{border-bottom:1px solid var(--edge);padding-bottom:22px;margin-bottom:24px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ochre);opacity:.95}
+  h1{font-family:Georgia,serif;font-size:38px;line-height:1.08;margin:.3em 0 .14em;font-weight:600}h1 em{color:var(--ochre2);font-style:italic}
+  .who{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.04em}
+  .sub{color:var(--dim);font-size:16px;max-width:74ch;margin-top:14px}.sub b{color:var(--ink)}
+  .verdicts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:22px 0}@media(max-width:720px){.verdicts{grid-template-columns:1fr}}
+  .vc{border:1px solid var(--edge);border-radius:11px;padding:13px 15px;border-top-width:3px;background:rgba(18,22,34,.6)}
+  .vc .badge{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em}
+  .vc.s{border-top-color:var(--one)}.vc.s .badge{color:var(--one)} .vc.m{border-top-color:var(--amber)}.vc.m .badge{color:var(--amber)} .vc.f{border-top-color:var(--ember)}.vc.f .badge{color:var(--ember)}
+  .vc p{font-size:12px;color:var(--dim);margin:6px 0 0;line-height:1.45}.vc p b{color:var(--ink)}
+  section{margin:36px 0}
+  h2{font-size:13px;font-family:var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ochre2);border-left:2px solid var(--ochre);padding-left:11px;margin:0 0 6px}
+  .lede{color:var(--dim);font-size:15px;margin:0 0 18px;max-width:80ch}
+  .panel{background:linear-gradient(180deg,var(--panel),#0a0d14);border:1px solid var(--edge);border-radius:14px;padding:20px;box-shadow:0 24px 60px -40px #000}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+  button{font-family:var(--mono);font-size:12px;color:var(--ink);background:#1a2030;border:1px solid var(--edge);border-radius:8px;padding:8px 12px;cursor:pointer}button:hover{background:#222b3e;border-color:var(--ochre)}
+  button.on{border-color:var(--ochre);background:#2a2414;color:var(--ochre2)}
+  .kw{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+  svg{display:block;max-width:100%}
+  .wbtn{font-family:var(--mono);font-size:12px;border:1px solid var(--edge);border-radius:8px;padding:7px 11px;cursor:pointer;background:#0c1622;color:var(--dim)}
+  .wbtn.sel{border-color:var(--ochre);color:var(--ochre2)}
+  .ev{font-family:var(--mono);font-size:13px;color:var(--dim);min-width:220px;flex:1}
+  .ev .row{display:flex;justify-content:space-between;margin:5px 0}.ev b.t{color:var(--one)}.ev b.f{color:var(--zero)}
+  .ev h4{font-family:var(--mono);font-size:11px;color:var(--ochre);letter-spacing:.1em;text-transform:uppercase;margin:10px 0 4px}
+  .axs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:14px}
+  .axc{border:1px solid var(--edge);border-radius:9px;padding:9px 11px;background:rgba(0,0,0,.16);font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .axc.ok{border-color:#2f5b40}.axc .v{font-weight:700}.axc .v.t{color:var(--one)}.axc .v.f{color:var(--zero)}
+  .note{color:var(--dim);font-size:13.5px;border-left:2px solid var(--edge);padding-left:13px;margin:16px 0 0}.note b{color:var(--ink)}
+  .thm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}@media(max-width:620px){.thm{grid-template-columns:1fr}}
+  .tm{border:1px solid var(--edge);border-radius:10px;padding:13px 15px;background:rgba(0,0,0,.14)}.tm b{color:var(--ochre2);font-family:var(--mono);font-size:11px}.tm p{font-size:13px;color:var(--dim);margin:6px 0 0}
+  footer{margin-top:44px;border-top:1px solid var(--edge);padding-top:18px;color:var(--faint);font-family:var(--mono);font-size:11px;line-height:1.7}
+  footer a,.bar2 a{color:var(--ochre)}.bar2{font-family:var(--mono);font-size:11.5px;margin-bottom:16px}.bar2 a{text-decoration:none;border-bottom:1px dotted #4a4126}
+  code{font-family:var(--mono);color:var(--ochre2);background:#15120a;padding:1px 5px;border-radius:5px}
+  blockquote{margin:14px 0;padding:10px 16px;border-left:3px solid var(--ochre);color:var(--ink);font-style:italic;font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="bar2"><a href="https://davidwise01.github.io/ud0/">◄ UD0</a> &nbsp; <a href="https://davidwise01.github.io/gerhard-gentzen/">← Gentzen</a> &nbsp; LOGIKĒ · XXVIII · the foundations rank</div>
+<header>
+  <div class="kicker">LOGIKĒ · XXVIII · possible worlds</div>
+  <h1>Saul <em>Kripke</em></h1>
+  <div class="who">1940 – 2022 · Omaha &amp; Harvard &amp; Princeton · child prodigy · "Naming and Necessity"</div>
+  <div class="sub">[[ruth-barcan-marcus]] gave modal logic its <em>axioms</em>; Kripke — as a <b>teenager</b> — gave it its <b>meaning</b>. His picture is now so standard it's hard to remember it had to be invented: imagine a set of <b>possible worlds</b>, connected by an <b>accessibility</b> relation saying which worlds are "possible relative to" which. Then "<b>necessarily P</b>" (□P) is true at a world exactly when P holds in <em>every</em> world that one can see; "<b>possibly P</b>" (◇P) when P holds in <em>some</em> world it can see. Suddenly the dry symbols □ and ◇ have a crisp model — and, astonishingly, the <em>shape</em> of the accessibility relation decides which logic of necessity you get. This <b>possible-worlds semantics</b> is the foundation under the logic of necessity, knowledge, time, obligation, and program correctness.</div>
+</header>
+<div class="verdicts">
+  <div class="vc s"><span class="badge">✓ STRONG</span><p><b>The semantics of modality.</b> Kripke models (worlds + accessibility) are rigorous, complete for the standard modal systems, and the working foundation of modal, temporal, epistemic, and provability logic across philosophy and computer science.</p></div>
+  <div class="vc m"><span class="badge">◐ SEMANTICS ATOP HER SYNTAX</span><p><b>A relay, honestly told.</b> The quantified-modal <em>systems</em> and the Barcan formula are [[ruth-barcan-marcus]]'s (1946); Kripke supplied the possible-worlds <em>interpretation</em> (c. 1959–63). Two halves of one achievement — and a real, documented priority dispute between them.</p></div>
+  <div class="vc f"><span class="badge">◔ "WORLDS" — A MODEL, NOT A METAPHYSICS</span><p><b>Math first.</b> The possible worlds are a precise mathematical device. Whether other worlds "really exist" is a separate philosophical question (Kripke himself was cautious; David Lewis went further). The semantics works regardless.</p></div>
+</div>
+
+<section>
+  <h2>I · A world model — and the shape that sets the logic</h2>
+  <p class="lede">Three worlds; in each, a fact <b>p</b> is true or false (click a world to toggle p). The <b>accessibility</b> relation — which worlds each can "see" — is set by the buttons below, and its <em>shape</em> is everything. Evaluate □p and ◇p at the highlighted world, and watch the famous modal axioms switch on and off as you change the relation: a <b>reflexive</b> relation validates "□p → p" (system T); add <b>transitivity</b> for S4; make it an <b>equivalence</b> for S5.</p>
+  <div class="panel">
+    <div class="controls" id="frames"></div>
+    <div class="kw">
+      <svg id="graph" viewBox="0 0 300 200" width="300" height="200"></svg>
+      <div class="ev" id="ev"></div>
+    </div>
+    <div class="axs" id="axs"></div>
+    <div class="note">The revelation is that <b>the relation's shape is the logic</b>. "What is necessary is true" (□p→p) holds exactly when every world sees itself (reflexive). "What's necessary is necessarily necessary" (□p→□□p) holds exactly when accessibility is transitive. Pin down the relation and you pin down the modal system — T, S4, S5 — each matching a different reading of "necessary": logical, temporal, knowable. ⚑ This is the semantic engine behind [[ruth-barcan-marcus]]'s formula, behind the logic of <em>knowledge</em> (◇ = "for all I know"), and behind the modal logic of <em>provability</em> that re-encodes [[kurt-godel]].</div>
+  </div>
+  <blockquote>"Possible worlds are stipulated, not discovered by powerful telescopes." <span style="color:var(--faint);font-style:normal;font-size:12px">— Saul Kripke, Naming and Necessity</span></blockquote>
+</section>
+
+<section>
+  <h2>II · Why it mattered everywhere</h2>
+  <div class="thm">
+    <div class="tm"><b>FRAMES ⇄ SYSTEMS</b><p>Each modal axiom corresponds to a property of accessibility: reflexive ↔ T, transitive ↔ 4, symmetric ↔ B, equivalence ↔ S5. Soundness and completeness tie the syntax of necessity to the geometry of worlds — exactly.</p></div>
+    <div class="tm"><b>NAMING AND NECESSITY</b><p>His later work argued names are <em>rigid designators</em> — they pick the same thing in every possible world — overturning the dominant theory of meaning. (The "tags" idea [[ruth-barcan-marcus]] had voiced earlier.)</p></div>
+  </div>
+  <p class="lede" style="margin-top:16px">Possible-worlds semantics didn't just rescue modal logic from suspicion — it <b>colonised half of logic and computer science</b>. Read the worlds as <em>moments in time</em> and you have <b>temporal logic</b>, used to verify that a chip or protocol never reaches a bad state. Read accessibility as "compatible with what an agent knows" and you have <b>epistemic logic</b>, the logic of knowledge and belief in AI and economics. Read it as "provable" and you recover, in modal dress, [[kurt-godel]]'s incompleteness. The model checkers that prove safety properties of real hardware and software are walking Kripke structures. A picture invented by a teenager became the standard semantics for reasoning about <em>what must, might, will, or is known to</em> be — one of the most fruitful single ideas in modern logic.</p>
+</section>
+
+<section>
+  <h2>III · The prodigy, the priority, the picture</h2>
+  <p class="note" style="border-color:var(--amber)"><b style="color:var(--amber)">Gate kept on.</b> Kripke's contribution is <b>real, rigorous, and enormous</b>: the possible-worlds semantics for modal logic, with its soundness and completeness theorems linking frame conditions to modal systems, is the standard model used everywhere from philosophy to formal verification, and he produced the core of it as a teenager — a genuine prodigy who published the foundational papers around 1959–1963. The honest qualification is one of <b>credit and sequence</b>, and it ties directly to the sphere before this one: the quantified modal <em>logics</em> and the Barcan formula were [[ruth-barcan-marcus]]'s in 1946; the idea of names as world-spanning "tags" was also hers before it was his "rigid designators." Kripke supplied the <em>semantics</em> — the worlds-and-accessibility interpretation that made the systems intuitive — which is a major and largely independent achievement, but the popular tendency to credit <em>him</em> with the whole edifice is the error this lineage corrects: it is, properly, <b>Barcan's syntax and Kripke's semantics</b>, and there was a sharp, well-documented priority dispute (including a notorious seminar) between them. Finally, the "possible worlds" are a <em>mathematical model</em>, not a commitment that other universes literally exist — Kripke was careful on this; the device earns its keep by working, regardless of metaphysics. ⚑ With Kripke the modal thread that [[ruth-barcan-marcus]] opened is complete: the syntax, and the worlds that give it meaning. [[gerhard-gentzen]] ←.</p>
+</section>
+
+<footer>
+  SAUL KRIPKE · LOGIKĒ XXVIII · two-layer honest<br>
+  live Kripke model (worlds + accessibility; □p true at w iff p holds in all worlds w sees, ◇p iff some; reflexive→T validates □p→p, transitive→S4, equivalence→S5 — verified)<br>
+  possible-worlds semantics for modal logic (c. 1959–63) · frame conditions ⇄ modal systems (T/S4/S5) · "Naming and Necessity" / rigid designators · the basis of temporal, epistemic &amp; provability logic<br>
+  ← <a href="https://davidwise01.github.io/gerhard-gentzen/">Gentzen</a> · the modal thread, completed from <a href="https://davidwise01.github.io/ruth-barcan-marcus/">Barcan Marcus</a><br>
+  LOGIKĒ · the lineage of logical mathematics · governor David Lee Wise · CC-BY-ND-4.0
+</footer>
+</div>
+<script>
+"use strict";
+(function(){
+  const $=id=>document.getElementById(id);
+  const W=[0,1,2];
+  let val=[true,false,true];   // p at each world
+  let here=0;                  // the world we evaluate at
+  let frameKey="refl";
+  // accessibility relations (R[i][j] = i can see j)
+  const FRAMES={
+    refl: {name:"reflexive (T)", R:[[1,1,0],[0,1,1],[0,0,1]]},
+    trans:{name:"reflexive + transitive (S4)", R:[[1,1,1],[0,1,1],[0,0,1]]},
+    s5:   {name:"equivalence (S5)", R:[[1,1,1],[1,1,1],[1,1,1]]},
+    serial:{name:"serial, not reflexive (D)", R:[[0,1,0],[0,0,1],[1,0,0]]}
+  };
+  const pos=[[60,40],[240,40],[150,160]];
+  function box(R,w){ return W.every(u=>!R[w][u]||val[u]); }
+  function dia(R,w){ return W.some(u=>R[w][u]&&val[u]); }
+  function props(R){
+    const refl=W.every(w=>R[w][w]);
+    const sym=W.every(a=>W.every(b=>!R[a][b]||R[b][a]));
+    let trans=true; W.forEach(a=>W.forEach(b=>W.forEach(c=>{ if(R[a][b]&&R[b][c]&&!R[a][c]) trans=false; })));
+    return {refl,sym,trans};
+  }
+  function draw(){
+    $('frames').innerHTML=Object.keys(FRAMES).map(k=>'<button class="'+(k===frameKey?'on':'')+'" data-k="'+k+'">'+FRAMES[k].name+'</button>').join('');
+    $('frames').querySelectorAll('button').forEach(b=>b.onclick=()=>{frameKey=b.dataset.k;draw();});
+    const R=FRAMES[frameKey].R;
+    // graph
+    let g='<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#5ad1ff"/></marker></defs>';
+    // edges
+    W.forEach(a=>W.forEach(b=>{ if(R[a][b]){
+      if(a===b){ const [x,y]=pos[a]; g+='<circle cx="'+x+'" cy="'+(y-22)+'" r="11" fill="none" stroke="#3a4660" stroke-width="1.5"/>'; }
+      else { const [x1,y1]=pos[a],[x2,y2]=pos[b]; const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy); const ux=dx/L,uy=dy/L;
+        g+='<line x1="'+(x1+ux*20)+'" y1="'+(y1+uy*20)+'" x2="'+(x2-ux*22)+'" y2="'+(y2-uy*22)+'" stroke="#3a4660" stroke-width="1.5" marker-end="url(#ah)"/>'; }
+    }}));
+    // nodes
+    W.forEach(w=>{ const [x,y]=pos[w]; const sel=w===here;
+      g+='<circle cx="'+x+'" cy="'+y+'" r="20" fill="'+(val[w]?'#0d1a12':'#1f1014')+'" stroke="'+(sel?'#d9b66a':(val[w]?'#2f5b40':'#5b2f33'))+'" stroke-width="'+(sel?'3':'1.5')+'" style="cursor:pointer" data-w="'+w+'"/>';
+      g+='<text x="'+x+'" y="'+(y-2)+'" text-anchor="middle" font-family="monospace" font-size="11" fill="#b3ad9a">w'+w+'</text>';
+      g+='<text x="'+x+'" y="'+(y+12)+'" text-anchor="middle" font-family="monospace" font-size="11" fill="'+(val[w]?'#7fe0a0':'#fb7185')+'">p='+(val[w]?'T':'F')+'</text>';
+    });
+    $('graph').innerHTML=g;
+    $('graph').querySelectorAll('[data-w]').forEach(n=>{
+      n.onclick=(e)=>{ const w=+n.dataset.w; if(e.shiftKey){ here=w; } else { val[w]=!val[w]; } draw(); };
+    });
+    // evaluation at `here`
+    const bp=box(R,here), dp=dia(R,here);
+    const tf=v=>'<b class="'+(v?'t':'f')+'">'+(v?'TRUE':'FALSE')+'</b>';
+    $('ev').innerHTML='<h4>at world w'+here+' &nbsp;<span style="color:var(--faint);font-weight:400">(click a node to toggle p; shift-click to evaluate there)</span></h4>'+
+      '<div class="row"><span>p</span>'+tf(val[here])+'</div>'+
+      '<div class="row"><span>□p &nbsp;<span style="color:var(--faint)">(p in all worlds w'+here+' sees)</span></span>'+tf(bp)+'</div>'+
+      '<div class="row"><span>◇p &nbsp;<span style="color:var(--faint)">(p in some world it sees)</span></span>'+tf(dp)+'</div>';
+    // axioms (validity over this frame, all valuations) — check the frame property, which is the clean equivalence
+    const pr=props(R);
+    const axioms=[
+      ['T: □p → p', 'reflexive', pr.refl],
+      ['4: □p → □□p', 'transitive', pr.trans],
+      ['B: p → □◇p', 'symmetric', pr.sym],
+      ['S5: ◇p → □◇p', 'equivalence', pr.refl&&pr.sym&&pr.trans]
+    ];
+    $('axs').innerHTML=axioms.map(([ax,cond,ok])=>'<div class="axc'+(ok?' ok':'')+'">'+ax+'<br><span style="color:var(--faint)">needs '+cond+'</span> &nbsp;<span class="v '+(ok?'t':'f')+'">'+(ok?'valid':'—')+'</span></div>').join('');
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
