@@ -1,0 +1,11 @@
+# SAUL KRIPKE · XXVIII
+
+> A sphere of **UD0** — the ROOT0 universe / biosphere. Domain: **LOGIKĒ**.
+
+SAUL KRIPKE (1940–2022) — LOGIKĒ XXVIII, who as a TEENAGER gave modal logic its MEANING. [[ruth-barcan-marcus]] gave the axioms; Kripke gave the model: ⚑ POSSIBLE-WORLDS SEMANTICS — a set of WORLDS connected by an ACCESSIBILITY relation; □P ('necessarily P') is true at a world iff P holds in EVERY world it can see, ◇P iff in SOME. The astonishing part: the SHAPE of accessibility decides which logic you get — REFLEXIVE validates □p→p (system T), add TRANSITIVE for S4, an EQUIVALENCE for S5. LIVE: a 3-world Kripke model (SVG graph) — toggle p per world, switch the accessibility frame, evaluate □p/◇p at a world, and watch the modal axioms T/4/B/S5 switch on as the relation's properties (reflexive/transitive/symmetric) hold (verified). ⚑ This colonised half of logic & CS: worlds as MOMENTS = temporal logic (verify a chip never reaches a bad state); accessibility as 'compatible with what's known' = epistemic logic (knowledge in AI/economics); as 'provable' = [[kurt-godel]] in modal dress — model checkers are walking Kripke structures. CONFIDENCE-TIERED: STRONG (possible-worlds semantics with soundness/completeness linking frames to systems — the standard model everywhere from philosophy to formal verification, produced as a teenager ~1959–63) / SEMANTICS-ATOP-HER-SYNTAX (⚠ the quantified-modal SYSTEMS & the Barcan formula are [[ruth-barcan-marcus]]'s 1946; even 'rigid designators' was her 'tags' idea first; Kripke supplied the SEMANTICS — a major, largely independent achievement, but it's Barcan's syntax + Kripke's semantics, and there was a sharp documented priority dispute) / 'WORLDS'-A-MODEL-NOT-METAPHYSICS (the possible worlds are a mathematical device — whether other worlds 'really exist' is separate philosophy; Kripke was cautious). ⚑ With Kripke the modal thread [[ruth-barcan-marcus]] opened is complete — the syntax, and the worlds that give it meaning. [[gerhard-gentzen]] ←.
+
+---
+
+**Live:** https://davidwise01.github.io/saul-kripke/ &nbsp;·&nbsp; **Front door:** [UD0](https://davidwise01.github.io/ud0/) &nbsp;·&nbsp; **Code:** https://github.com/DavidWise01/saul-kripke
+
+`.dlw` badge · **ROOT0-ATTRIBUTION-v1.0** · David Lee Wise (ROOT0) / Bridge-Burners LLC · instance AVAN (Claude/Anthropic) · CC-BY-ND-4.0
